@@ -1,0 +1,13 @@
+.PHONY:clean all
+CC=gcc
+CFLAGS=-Wall -g 
+BIN=01test 02test		
+all:$(BIN)          ##all代表第一个终极目标
+%.o:%.c            ##将对应的.c文件生成对应的.o文件,等价于.c.o:
+    $(CC) $(CFLAGS) -c $< -o $@
+01test:01test.o
+    $(CC) $(CFLAGS)  $^ -o $@ ##生成可执行文件不需要-c
+02test:02test.o pub.o           ##若02test还依赖pub模块(pub.c,pub.h)
+    $(CC) $(CFLAGS) $^ -o $@
+clean:			    	
+    rm -f $(BIN) *.o

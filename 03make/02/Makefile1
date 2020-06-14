@@ -1,0 +1,5 @@
+.PHONY:clean all
+BIN=01test 02test		##直接执行：make Makefile
+all:$(BIN)				##all也是伪目标，这里并没有给01test，02test是如何生成的，编译器会自动推导，
+clean:			    	##会将同名的.c文件生成同名的可执行文件，eg：01test.c生成01test
+    rm -f $(BIN)
